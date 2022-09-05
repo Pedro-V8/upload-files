@@ -4,9 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
     <title>Document</title>
 </head>
 <body>
-    <h1>{{file.title}}</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Banco Origem</th>
+            <th>Agência Origem</th>
+            <th>Conta Origem</th>
+            <th>Banco Destino</th>
+            <th>Agência Destino</th>
+            <th>Conta Destino</th>
+            <th>Valor Transação</th>
+        </tr>
+        {% for item in transactions %}
+            <tr>
+                
+                <td>{{ item.id }}</td>
+                <td>{{ item.banco_origem}} </td>
+                <td>{{ item.agencia_origem }}</td>
+                <td>{{ item.conta_origem }}</td>
+                <td>{{ item.banco_destino }}</td>
+                <td>{{ item.agencia_destino }}</td>
+                <td>{{ item.conta_destino }}</td>
+                <td>{{ item.valor_transacao }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

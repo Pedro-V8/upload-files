@@ -22,7 +22,7 @@ class Transacao(models.Model):
     banco_destino = models.CharField(max_length=200)
     agencia_destino = models.CharField(max_length=200)
     conta_destino = models.CharField(max_length=200)
-    valor_transacao = models.IntegerField()
+    valor_transacao = models.FloatField()
     data_hora = models.CharField(max_length=200)
     upload_id = models.ForeignKey(Document , on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
