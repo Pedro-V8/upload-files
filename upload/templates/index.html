@@ -12,7 +12,7 @@
 <body>
 
     <div class="container">
-        <h1 class="teste">Upload your file... </h1>
+        <h1 class="teste">Upload your file... {{ user.username }}</h1>
 
         <form action="{% url 'uploadFile' %}" method="POST" enctype="multipart/form-data">
             <input type="text" name="fileTitle" placeholder="Enter a title">

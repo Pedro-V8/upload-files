@@ -5,8 +5,8 @@ from .models import Document , Transacao
 
 @admin.register(Document)
 class AdminDocuments(admin.ModelAdmin):
-    fields = ['title' , 'uploadedFile' , 'dateTimeOfUpload']
-    list_display = ['id' ,'title' , 'uploadedFile' , 'dateTimeOfUpload']
+    fields = ['title' , 'uploadedFile' , 'dateTimeOfUpload' , 'user_id'] #
+    list_display = ['id' ,'title' , 'uploadedFile' , 'dateTimeOfUpload' , 'user_id']
 
 @admin.register(Transacao)
 class AdminTransacao(admin.ModelAdmin):

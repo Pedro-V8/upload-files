@@ -1,6 +1,7 @@
 from tabnanny import verbose
 from django.db import models
 from django.utils import timezone
+from user.models import Profile
 # Create your models here.
 
 def upload_document(instance , filename):
@@ -9,6 +10,7 @@ def upload_document(instance , filename):
 class Document(models.Model):
     title = models.CharField(max_length=200)
     uploadedFile = models.FileField(upload_to=upload_document)
+    user_id = models.ForeignKey(Profile , on_delete=models.CASCADE ,related_name='user')
     dateTimeOfUpload = models.DateTimeField(default=timezone.now)
 
     class Meta():

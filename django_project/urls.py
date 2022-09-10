@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from upload import views
+from user import views as user_views
 
 app_name = "Core"
 
@@ -26,6 +27,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index , name="uploadFile"),
     path('<int:pk>/', views.retrieve_file , name="retrieveFile"),
+    path('register/' , user_views.register_request , name="register"),
+    path('login/' , user_views.login_request , name="login")
 ]
 
 if settings.DEBUG:
