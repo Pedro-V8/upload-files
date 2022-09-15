@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Document , Transacao
+from .models import Conta 
 from user.models import Profile
 from .services.trata_archive import retorna_data
 
@@ -10,17 +10,24 @@ import codecs
 
 def index(request):
     if request.method == 'POST':
+        print("!!!!!!!!!!!!!!!!!!!!!")
+        print(request.POST)
+        return "OK"
+        '''
         print("--------------------------------")
-        print(request)
+        #print(request.user)
+        print(request.POST)
 
         fileTitle = request.POST["fileTitle"]
         uploaded_file = request.FILES["uploadedFile"]
+
         uploaded_file_utf_8 = codecs.EncodedFile(uploaded_file, "utf-8")
 
 
         document = Document(
             title = fileTitle,
-            uploadedFile = uploaded_file
+            uploadedFile = uploaded_file,
+            user_id = request.user
         )
         document.save()
         documento = Document.objects.get(title=fileTitle)
@@ -47,26 +54,27 @@ def index(request):
                     upload_id = documento    
                 )
                 transacao.save()
-
+    '''
     user = Profile.objects.get(email=request.user)
-    documents = Document.objects.filter(user_id=user.id)
 
     return render(request , "index.html", context= {
-      "files": documents,
        "user": user
     })
 
 def retrieve_file(request , pk):
     if request.method == "GET":
+        try:
 
-        document = Document.objects.get(id=pk)
-        transacoes = Transacao.objects.filter(upload_id=document)
-        print("#####################################")
-        print(transacoes)
-        
-        return render(request , "retrieve.html" , context={
-            "transactions": transacoes
-        })
+            document = Document.objects.get(id=pk)
+            transacoes = Transacao.objects.filter(upload_id=document)
+            print("#####################################")
+            print(transacoes)
+            
+            return render(request , "retrieve.html" , context={
+                "transactions": transacoes
+            })
+        except:
+            return index(request)
 
 
 '''def upload_file(request):

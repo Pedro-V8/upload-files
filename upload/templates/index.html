@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     {% load static %}
     <link rel="stylesheet" href = "{% static 'index.css' %}">
     <title>Document</title>
@@ -13,18 +14,36 @@
 
     <div class="container">
         <h1 class="teste">Upload your file... {{ user.username }}</h1>
+        <!--<p><a href="{% url 'logout' %}">Log Out</a></p>-->
 
         <form action="{% url 'uploadFile' %}" method="POST" enctype="multipart/form-data">
-            <input type="text" name="fileTitle" placeholder="Enter a title">
-   
+            <input type="text" name="title" placeholder="Enter a title">
+
+            <input type="text" name="empresa" placeholder="Enter a Empresa">
+            
+            DATA EMISSAO
+            <input type="date" id="start" name="data_emissao" value="0000-00-00" min="2018-01-01" max="2022-12-31">
+            
+            DATA VALIDADE
+            <input type="date" id="start" name="data_validade" value="0000-00-00" min="2018-01-01" max="2050-12-31">
+
+
+            <select>
+                <option value="Aberto">Aberto</option>
+                <option value="Fechado">Fechado</option>
+            </select>
+
+
+
             <input type="file" name="uploadedFile">
 
 
             {% csrf_token %}
             <input type="submit" value="Upload">
         </form>
+        
 
-        <table>
+        <!--<table>
             <tr>
                 <th>ID</th>
                 <th>Title</th>
@@ -37,12 +56,12 @@
                     
                     <td>{{ file.id }}</td>
                     <td>{{ file.title }}</td>
-                    <td>{{ file.uploadedFile.url }} </td>
+                    <td><a href="{{ file.uploadedFile.url }}">Arquivo</a></td>
                     <td>{{ file.dateTimeOfUpload }}</td>
                     <td> <a href="{% url 'retrieveFile' file.id %}">Abrir</a></td>
                 </tr>
             {% endfor %}
-        </table>
+        </table>-->
 
     </div>
 </body>
