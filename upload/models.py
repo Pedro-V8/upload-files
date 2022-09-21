@@ -17,7 +17,7 @@ class Conta(models.Model):
     imagem = models.ImageField(upload_to='contas')
     data_emissao = models.CharField(max_length=10)
     data_validade = models.CharField(max_length=11)
-    user_id = models.ForeignKey(Profile , on_delete=models.CASCADE ,related_name='user')
+    user_id = models.ForeignKey(Profile , on_delete=models.CASCADE ,related_name='conta')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

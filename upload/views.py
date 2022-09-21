@@ -4,6 +4,7 @@ from .models import Conta
 from user.models import Profile
 from .services.trata_archive import retorna_data
 
+
 import codecs
 
 # Create your views here.
@@ -38,9 +39,12 @@ def retrieve_file(request , pk):
         try:
             
             conta = Conta.objects.get(id=pk)
+            user = Profile.objects.get(conta=conta)
             print(conta.user_id)
+
             return render(request , "retrieve.html" , context={
-                "conta": conta
+                "conta": conta,
+                "user":user
             })
         except:
             return index(request)
