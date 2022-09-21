@@ -10,7 +10,14 @@ def padrao():
 def default_image(instance , filename):
     return f"media/contas/{filename}-JPG"
     
-class Conta(models.Model):
+class Base(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+class Conta(Base):
     title = models.CharField(max_length=200)
     empresa = models.CharField(max_length=200)
     status = models.CharField(max_length=8 , default=padrao)
@@ -18,10 +25,8 @@ class Conta(models.Model):
     data_emissao = models.CharField(max_length=10)
     data_validade = models.CharField(max_length=11)
     user_id = models.ForeignKey(Profile , on_delete=models.CASCADE ,related_name='conta')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
-    class Meta():
+    class Meta:
         verbose_name = 'Conta'
         verbose_name_plural = 'Contas'
 

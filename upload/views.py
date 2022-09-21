@@ -25,7 +25,10 @@ def index(request):
             data_validade = request.POST['data_validade'],
             user_id = request.user
         )
+
         conta.save()
+
+        
     
     user = Profile.objects.get(email=request.user)
     contas = Conta.objects.all()
