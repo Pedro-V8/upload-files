@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     {% load static %}
     <link rel="stylesheet" href = "{% static 'index.css' %}">
     <title>Document</title>
@@ -28,7 +29,7 @@
             <input type="date" id="start" name="data_validade" value="0000-00-00" min="2018-01-01" max="2050-12-31">
 
 
-            <select>
+            <select name="status">
                 <option value="Aberto">Aberto</option>
                 <option value="Fechado">Fechado</option>
             </select>
@@ -43,25 +44,31 @@
         </form>
         
 
-        <!--<table>
+        <table>
             <tr>
                 <th>ID</th>
-                <th>Title</th>
-                <th>File Path</th>
-                <th>Upload Date & Time</th>
-                <th>Visualizar Transações</th>
+                <th>Titulo</th>
+                <th>Nome Empresa</th>
+                <th>Status Conta</th>
+                <th>Data Emissão</th>
+                <th>Data Validade</th>
+                <th>Mais Detalhes</th>
+
             </tr>
-            {% for file in files %}
+            {% for conta in contas %}
                 <tr>
                     
-                    <td>{{ file.id }}</td>
-                    <td>{{ file.title }}</td>
-                    <td><a href="{{ file.uploadedFile.url }}">Arquivo</a></td>
-                    <td>{{ file.dateTimeOfUpload }}</td>
-                    <td> <a href="{% url 'retrieveFile' file.id %}">Abrir</a></td>
+                    <td>{{ conta.id }}</td>
+                    <td>{{ conta.title }}</td>
+                    <td>{{ conta.empresa }}</td>
+                    <td>{{ conta.status }}</td>
+                    <td>{{ conta.data_emissao }}</td>
+                    <td>{{ conta.data_validade }}</td>
+                    <td><a href="{% url 'retrieveFile' conta.id%}">Abrir</a></td>
+
                 </tr>
             {% endfor %}
-        </table>-->
+        </table>
 
     </div>
 </body>

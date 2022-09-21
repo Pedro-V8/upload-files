@@ -12,14 +12,16 @@ from upload.views import index
 def register_request(request):
     if request.method == "POST":
         form = UserForm(request.POST)
+
         if form.is_valid():
-            form.save()
-            #login(request , user)
+            user = form.save()
+            login(request , user)
             messages.success(request, "Registro bem sucedido")
             return HttpResponseRedirect('')
         messages.error(request, "Unsuccessful registration. Invalid information.")
         print('------------------------')
         print("ERROR")
+        return render(request , 'register.html')
 
     else: 
         form = UserForm()
