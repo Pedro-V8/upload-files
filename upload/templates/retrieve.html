@@ -38,8 +38,16 @@
             </div>
 
             <div class="input-field col s12">
-                <input disabled value="{{conta.user_id}}" id="disabled" type="text" class="validate">
-                <input disabled value="{{user.username}}" id="disabled" type="text" class="validate">
+                <span> Criado por: {{user.username}}</span>
+            </div>
+
+            <span>Responsáveis: </span>
+            <div class="list_responsaveis">
+                
+                {%for res in responsaveis%}
+                    <span class="user_item">- {{res.email}}</span>
+
+                {%endfor%}
             </div>
 
            <div class="buttons">

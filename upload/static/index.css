@@ -10,3 +10,12 @@ html,body{
 .h1{
     margin-bottom: 50px;
 }
+
+.responsaveis{
+    display: flex;
+    flex-direction: column;
+}
+
+.user-item{
+    padding-bottom: 0.5%;
+}

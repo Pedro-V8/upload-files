@@ -1,4 +1,3 @@
-from tabnanny import verbose
 from django.db import models
 from django.utils import timezone
 from user.models import Profile
@@ -24,9 +23,21 @@ class Conta(Base):
     imagem = models.ImageField(upload_to='contas')
     data_emissao = models.CharField(max_length=10)
     data_validade = models.CharField(max_length=11)
+
     user_id = models.ForeignKey(Profile , on_delete=models.CASCADE ,related_name='conta')
 
     class Meta:
         verbose_name = 'Conta'
         verbose_name_plural = 'Contas'
 
+class Responsaveis(models.Model):
+    title = models.CharField(max_length=200)
+    users = models.ManyToManyField(Profile)
+    conta = models.ForeignKey(Conta, on_delete=models.CASCADE , related_name='conta')
+
+    class Meta:
+        verbose_name = 'Resonsavel'
+        verbose_name_plural = 'Responsaveis'
+
+    def get_users(self):
+        return ",".join([str(p) for p in self.users.all()])

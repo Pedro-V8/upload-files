@@ -21,3 +21,12 @@ html , body {
 .btnV{
     margin-right: 10vw;
 }
+
+.list_responsaveis {
+    display: flex;
+    flex-direction: column;
+}
+
+.user_item{
+    padding-bottom: 2%;
+}

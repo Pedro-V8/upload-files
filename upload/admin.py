@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Conta
+from .models import Conta , Responsaveis
 
 # Register your models here.
 
@@ -27,4 +27,18 @@ class AdminDocuments(admin.ModelAdmin):
         'user_id',
         'created_at',
         'updated_at'
+    ] 
+
+@admin.register(Responsaveis)
+class AdminResponsaveis(admin.ModelAdmin):
+    fields = [
+        'title',
+        'users',
+        'conta'
+    ]
+    list_display = [
+        'id',
+        'title',
+        'get_users',
+        'conta'
     ] 

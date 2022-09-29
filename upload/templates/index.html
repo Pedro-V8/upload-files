@@ -14,6 +14,7 @@
 <body>
 
     <div class="container">
+        <p><a href="{% url 'logout' %}">Log Out</a></p>
         <h1 class="teste">Upload your file... {{ user.username }}</h1>
         <!--<p><a href="{% url 'logout' %}">Log Out</a></p>-->
 
@@ -27,14 +28,30 @@
             
             DATA VALIDADE
             <input type="date" id="start" name="data_validade" value="0000-00-00" min="2018-01-01" max="2050-12-31">
+            
+
+            RESPONSÁVEIS
+            <div class="responsaveis">
+                {% for user in users%}
+
+                    {%if user.first_name == ''%}
+                        <label class="user-item">
+                            <input type="checkbox" name="check" value={{user.email}} />
+                            <span>{{ user.email }}</span>
+                        </label>                    
+                    {%else%}
+
+                        <label class="user-item">
+                            <input type="checkbox" name="check" value={{user.email}} />
+                            <span>{{ user.first_name }} {{user.last_name}}</span>
+                        </label>
+                    {%endif%}
+                {%endfor%}
+
+            </div>
 
 
-            <select name="status">
-                <option value="Aberto">Aberto</option>
-                <option value="Fechado">Fechado</option>
-            </select>
-
-
+            
 
             <input type="file" name="uploadedFile">
 
