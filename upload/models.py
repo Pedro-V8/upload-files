@@ -23,6 +23,7 @@ class Conta(Base):
     imagem = models.ImageField(upload_to='contas')
     data_emissao = models.CharField(max_length=10)
     data_validade = models.CharField(max_length=11)
+    valor = models.FloatField()
 
     user_id = models.ForeignKey(Profile , on_delete=models.CASCADE ,related_name='conta')
 

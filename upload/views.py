@@ -10,8 +10,8 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     if request.method == 'POST':
         print("!!!!!!!!!!!!!!!!!!!!!")
-        print(request.POST.getlist('check'))
-
+        print(request.POST["valor"])
+        return "OK"
         emails = request.POST.getlist('check')
         users = []
 
