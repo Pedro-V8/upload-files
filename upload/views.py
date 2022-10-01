@@ -11,7 +11,7 @@ def index(request):
     if request.method == 'POST':
         print("!!!!!!!!!!!!!!!!!!!!!")
         print(request.POST["valor"])
-        return "OK"
+        
         emails = request.POST.getlist('check')
         users = []
 
@@ -28,6 +28,7 @@ def index(request):
             imagem = request.FILES["uploadedFile"],
             data_emissao = request.POST['data_emissao'],
             data_validade = request.POST['data_validade'],
+            valor = request.POST["valor"],
             user_id = request.user
         )
 

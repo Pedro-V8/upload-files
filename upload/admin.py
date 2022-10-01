@@ -12,9 +12,8 @@ class AdminDocuments(admin.ModelAdmin):
         'imagem',
         'data_emissao',
         'data_validade',
+        'valor',
         'user_id',
-        'created_at',
-        'updated_at'
     ] #
     list_display = [
         'id',
@@ -24,6 +23,7 @@ class AdminDocuments(admin.ModelAdmin):
         'imagem',
         'data_emissao',
         'data_validade',
+        'valor',
         'user_id',
         'created_at',
         'updated_at'

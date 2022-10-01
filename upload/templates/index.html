@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,9 +9,10 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     {% load static %}
-    <link rel="stylesheet" href = "{% static 'index.css' %}">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
     <title>Document</title>
 </head>
+
 <body>
 
     <div class="container">
@@ -22,39 +24,39 @@
             <input type="text" name="title" placeholder="Enter a title">
 
             <input type="text" name="empresa" placeholder="Enter a Empresa">
-            
+
             DATA EMISSAO
             <input type="date" id="start" name="data_emissao" value="0000-00-00" min="2018-01-01" max="2022-12-31">
-            
+
             DATA VALIDADE
             <input type="date" id="start" name="data_validade" value="0000-00-00" min="2018-01-01" max="2050-12-31">
 
             VALOR
-            <input data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" placeholder="$1,000,000.00"  min="1" name="valor" step="any" />
-            
+            <input placeholder="R$1,000,000.00" min="1" name="valor" step="any" />
+
 
             RESPONSÁVEIS
             <div class="responsaveis">
                 {% for user in users%}
 
-                    {%if user.first_name == ''%}
-                        <label class="user-item">
-                            <input type="checkbox" name="check" value={{user.email}} />
-                            <span>{{ user.email }}</span>
-                        </label>                    
-                    {%else%}
+                {%if user.first_name == ''%}
+                <label class="user-item">
+                    <input type="checkbox" name="check" value={{user.email}} />
+                    <span>{{ user.email }}</span>
+                </label>
+                {%else%}
 
-                        <label class="user-item">
-                            <input type="checkbox" name="check" value={{user.email}} />
-                            <span>{{ user.first_name }} {{user.last_name}}</span>
-                        </label>
-                    {%endif%}
+                <label class="user-item">
+                    <input type="checkbox" name="check" value={{user.email}} />
+                    <span>{{ user.first_name }} {{user.last_name}}</span>
+                </label>
+                {%endif%}
                 {%endfor%}
 
             </div>
 
 
-            
+
 
             <input type="file" name="uploadedFile">
 
@@ -62,7 +64,7 @@
             {% csrf_token %}
             <input type="submit" value="Upload">
         </form>
-        
+
 
         <table>
             <tr>
@@ -72,24 +74,25 @@
                 <th>Status Conta</th>
                 <th>Data Emissão</th>
                 <th>Data Validade</th>
-                <th>Mais Detalhes</th>
+                <th>Detalhar</th>
 
             </tr>
             {% for conta in contas %}
-                <tr>
-                    
-                    <td>{{ conta.id }}</td>
-                    <td>{{ conta.title }}</td>
-                    <td>{{ conta.empresa }}</td>
-                    <td>{{ conta.status }}</td>
-                    <td>{{ conta.data_emissao }}</td>
-                    <td>{{ conta.data_validade }}</td>
-                    <td><a href="{% url 'retrieveFile' conta.id%}">Abrir</a></td>
+            <tr>
 
-                </tr>
+                <td>{{ conta.id }}</td>
+                <td>{{ conta.title }}</td>
+                <td>{{ conta.empresa }}</td>
+                <td>{{ conta.status }}</td>
+                <td>{{ conta.data_emissao }}</td>
+                <td>{{ conta.data_validade }}</td>
+                <td><a href="{% url 'retrieveFile' conta.id%}">Abrir</a></td>
+
+            </tr>
             {% endfor %}
         </table>
 
     </div>
 </body>
+
 </html>

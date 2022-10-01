@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
 
     {% load static %}
-    <link rel="stylesheet" href = "{% static 'retrieve.css' %}">
+    <link rel="stylesheet" href="{% static 'retrieve.css' %}">
 
     <title>Document</title>
 </head>
+
 <body>
     <div class="content">
 
         <div>
             <h1>Imagem</h1>
-            <img class="image" src="{{ conta.imagem.url }}" /> 
+            <img class="image" src="{{ conta.imagem.url }}" />
         </div>
 
         <div>
@@ -34,7 +36,8 @@
             </div>
 
             <div class="input-field col s12">
-                <input disabled value="{{conta.data_emissao}} / {{conta.data_validade}}" id="disabled" type="text" class="validate">
+                <input disabled value="{{conta.data_emissao}} / {{conta.data_validade}}" id="disabled" type="text"
+                    class="validate">
             </div>
 
             <div class="input-field col s12">
@@ -43,18 +46,24 @@
 
             <span>Responsáveis: </span>
             <div class="list_responsaveis">
-                
+
                 {%for res in responsaveis%}
-                    <span class="user_item">- {{res.email}}</span>
+                <span class="user_item">- {{res.email}}</span>
 
                 {%endfor%}
             </div>
 
-           <div class="buttons">
-            <a class="waves-effect waves-light btn btnV" href="{% url 'uploadFile'%}">VOLTAR</a>
-            <a class="waves-effect waves-light btn">PAGAR</a>
-           </div>
+            <span>Valor: </span>
+            <div>
+                R$ {{conta.valor}}
+            </div>
+
+            <div class="buttons">
+                <a class="waves-effect waves-light btn btnV" href="{% url 'uploadFile'%}">VOLTAR</a>
+                <a class="waves-effect waves-light btn">PAGAR</a>
+            </div>
         </div>
     </div>
 </body>
+
 </html>
