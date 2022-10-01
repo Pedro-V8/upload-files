@@ -29,7 +29,8 @@ urlpatterns = [
     path('', views.index , name="uploadFile"),
     path('<int:pk>/', views.retrieve_file , name="retrieveFile"),
     path('register/' , user_views.register_request , name="register"),
-    path('login/' , user_views.login_request , name="login")
+    path('login/' , user_views.login_request , name="login"),
+    path('<int:pk>/delete/' , views.delete_file , name="delete")
 ]
 
 if settings.DEBUG:

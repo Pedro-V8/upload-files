@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .models import Conta , Responsaveis
 from user.models import Profile
 from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import DeleteView
 
 # Create your views here.
 
@@ -63,7 +64,7 @@ def index(request):
 def retrieve_file(request , pk):
     if request.method == "GET":
         try:
-            
+
             conta = Conta.objects.get(id=pk)
             user = Profile.objects.get(conta=conta)
             responsaveis = Responsaveis.objects.get(conta=conta)
@@ -78,15 +79,18 @@ def retrieve_file(request , pk):
         except:
             return index(request)
 
+@login_required(login_url='/login')
+def delete_file(request , pk):
+    if request.method == "GET":
+        conta = Conta.objects.get(id=pk)
+        
+        if conta:
+            conta.delete()
 
-'''def upload_file(request):
-    if request.method == 'POST':
-        form = UploadFileForm(request.POST , request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('index')
-        else:
-            form = UploadFileForm()
-'''
+            return index(request)
+
+
+
+
 
 

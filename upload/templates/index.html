@@ -87,6 +87,7 @@
                 <td>{{ conta.data_emissao }}</td>
                 <td>{{ conta.data_validade }}</td>
                 <td><a href="{% url 'retrieveFile' conta.id%}">Abrir</a></td>
+                <td><a href="{% url 'delete' conta.id %}">APAGAR</a></td>
 
             </tr>
             {% endfor %}
