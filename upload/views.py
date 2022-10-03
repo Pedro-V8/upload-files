@@ -88,9 +88,3 @@ def delete_file(request , pk):
             conta.delete()
 
             return index(request)
-
-
-
-
-
-
