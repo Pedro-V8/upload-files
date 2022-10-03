@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'cadastrar_pix.css' %}">
+
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="row">
+        <form class="col s12" action="{%url 'cadastrar_pix'%}" method="POST" enctype="multipart/form-data">
+
+            <div class="input-field col s6">
+                NOME COMPLETO 
+                <input id="last_name" type="text" class="validate">
+
+            
+        
+
+                CHAVE PIX (ALEATÓRIA)
+                <input id="last_name" type="text" class="validate">
+                
+
+
+
+                CIDADE
+                <input id="cidade" type="text" class="validate">
+                
+            
+
+                <div class="buttons">
+                    <a class="waves-effect waves-light btn btnV" href="{% url 'uploadFile'%}">VOLTAR</a>
+                    {% csrf_token %}
+                    <input class="waves-effect waves-light btn" type="submit" value="SALVAR">
+                </div>
+            </div>
+        </form>
+      </div>
+</body>
+</html>

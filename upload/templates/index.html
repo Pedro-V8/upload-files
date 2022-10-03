@@ -18,6 +18,8 @@
     <div class="container">
         <p><a href="{% url 'logout' %}">Log Out</a></p>
         <h1 class="teste">Upload your file... {{ user.username }}</h1>
+
+        <a href="{%url 'cadastrar_pix'%}">Cadastrar Pix</a>
         <!--<p><a href="{% url 'logout' %}">Log Out</a></p>-->
 
         <form action="{% url 'uploadFile' %}" method="POST" enctype="multipart/form-data">

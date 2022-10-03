@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 
 from upload import views
 from user import views as user_views
+from pagamento import views as pagamento_views
 
 app_name = "Core"
 
@@ -30,7 +31,9 @@ urlpatterns = [
     path('<int:pk>/', views.retrieve_file , name="retrieveFile"),
     path('register/' , user_views.register_request , name="register"),
     path('login/' , user_views.login_request , name="login"),
-    path('<int:pk>/delete/' , views.delete_file , name="delete")
+    path('<int:pk>/delete/' , views.delete_file , name="delete"),
+    path('pagar/' , pagamento_views.pagar , name="pagar"),
+    path('cadastrar_pix/' , pagamento_views.cadastrar_pix , name="cadastrar_pix")
 ]
 
 if settings.DEBUG:
