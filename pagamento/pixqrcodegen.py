@@ -10,7 +10,7 @@ class Payload():
         self.valor = valor
         self.cidade = cidade
         self.txtid = txtid
-        self.title_conta = title_conta.replace(" " ,"")
+        self.title_conta = title_conta
 
         self.nome_tam = len(self.nome)
         self.chavepix_tam = len(self.chavepix)

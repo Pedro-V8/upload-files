@@ -8,26 +8,27 @@ from .pixqrcodegen import Payload
 
 @login_required(login_url='/login')
 def pagar(request , pk):
-    print("########################")
+    nome_cidade = "Brasília"
+    nomeTxtId = "FamíliaVieira"
+
     conta = Conta.objects.get(id=pk)
     pix_user = Pix.objects.get(user_id=conta.user_id)
 
-    print(pix_user.nome.replace(" " , ""))
-    print(conta.valor)
+    conta_title_formatado = conta.title.replace(" " , "")
 
-    p = Payload(
+    pay = Payload(
         pix_user.nome.replace(" " , ""), 
         pix_user.chave_pix, 
         str(conta.valor),
-        'Brasila',
-        'FamiliaVieira', 
-        conta.title
+        nome_cidade,
+        nomeTxtId, 
+        conta_title_formatado
     )
 
-    p.gerarPayload()
-    nome_conta = conta.title.replace(" " , "")
+    pay.gerarPayload()
+    
     return render(request , "pagar.html" , context = {
-        "url": f"../media/pixQrCode/{nome_conta}QrCode.png"
+        "url": f"../media/pixQrCode/{conta_title_formatado}QrCode.png"
     })
 
 @login_required(login_url='/login')
