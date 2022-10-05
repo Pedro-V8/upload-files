@@ -15,11 +15,20 @@ def pagar(request , pk):
     print(pix_user.nome.replace(" " , ""))
     print(conta.valor)
 
-    p = Payload(pix_user.nome.replace(" " , "") , pix_user.chave_pix , str(conta.valor) , 'Brasila' , 'FamiliaVieira' , conta.title)
+    p = Payload(
+        pix_user.nome.replace(" " , ""), 
+        pix_user.chave_pix, 
+        str(conta.valor),
+        'Brasila',
+        'FamiliaVieira', 
+        conta.title
+    )
 
     p.gerarPayload()
-
-    return render(request , "pagar.html")
+    nome_conta = conta.title.replace(" " , "")
+    return render(request , "pagar.html" , context = {
+        "url": f"../media/pixQrCode/{nome_conta}QrCode.png"
+    })
 
 @login_required(login_url='/login')
 def cadastrar_pix(request):
