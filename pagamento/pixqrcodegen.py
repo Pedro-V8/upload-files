@@ -10,6 +10,7 @@ class Payload():
         self.valor = valor
         self.cidade = cidade
         self.txtid = txtid
+        self.title_conta = title_conta.replace(" " ,"")
 
         self.nome_tam = len(self.nome)
         self.chavepix_tam = len(self.chavepix)
@@ -49,7 +50,21 @@ class Payload():
         self.crc16 = '6304'
 
     def gerarPayload(self):
-        self.payload = f'{self.payloadFormat}{self.merchantAccount}{self.merchantCategCode}{self.transactionCurrency}{self.transactionAmount}{self.countryCode}{self.merchantName}{self.merchantCity}{self.addDataField}{self.crc16}'
+        items = [
+            self.payloadFormat,
+            self.merchantAccount,
+            self.merchantCategCode,
+            self.transactionCurrency,
+            self.transactionAmount,
+            self.countryCode,
+            self.merchantName,
+            self.merchantCity,
+            self.addDataField,
+            self.crc16
+        ]
+
+        self.payload = ''.join(items)
+
 
         print(self.payload)
 
@@ -71,7 +86,7 @@ class Payload():
 
     def gerarQrCode(self , payload):
         self.qrCode = qrcode.make(payload)
-        self.qrCode.save(f"../media/pixQrCode/{self.title_conta}QrCode.png")
+        self.qrCode.save(f"media/pixQrCode/{self.title_conta}QrCode.png")
         print("--QR Code gerado com sucesso --")
 
 

@@ -1,3 +1,4 @@
+import email
 from django.shortcuts import render
 
 from .models import Conta , Responsaveis
@@ -10,22 +11,21 @@ from django.views.generic.edit import DeleteView
 @login_required(login_url='/login')
 def index(request):
     if request.method == 'POST':
-        print("!!!!!!!!!!!!!!!!!!!!!")
-        print(request.POST["valor"])
-        
-        emails = request.POST.getlist('check')
         users = []
+        emails = request.POST.getlist('check')
 
-        if(len(emails) == 0):
+        if not emails:
             users.append(request.user)
         else:
             users = Profile.objects.filter(email__in=emails)
+
+        print(users)
+        return "OK"
 
 
         conta = Conta(
             title = request.POST["title"],
             empresa = request.POST["empresa"],
-            #status = request.POST.get('status'),
             imagem = request.FILES["uploadedFile"],
             data_emissao = request.POST['data_emissao'],
             data_validade = request.POST['data_validade'],
@@ -36,8 +36,7 @@ def index(request):
         conta.save()
 
         title_r = 'responsaveis_{}'.format(request.POST["title"].replace(" " , "_"))
-        print(title_r)
-        #return "OK"
+
         responsaveis_conta = Responsaveis(
             title = title_r,
             conta = conta

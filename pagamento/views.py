@@ -17,9 +17,7 @@ def pagar(request , pk):
 
     p = Payload(pix_user.nome.replace(" " , "") , pix_user.chave_pix , str(conta.valor) , 'Brasila' , 'FamiliaVieira' , conta.title)
 
-    imagem_payload = p.gerarPayload()
-
-    print(imagem_payload)
+    p.gerarPayload()
 
     return render(request , "pagar.html")
 
