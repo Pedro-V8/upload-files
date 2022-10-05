@@ -1,9 +1,10 @@
 import crcmod
 import qrcode
+import os
 
 
 class Payload():
-    def __init__(self , nome , chavepix , valor , cidade , txtid):
+    def __init__(self , nome , chavepix , valor , cidade , txtid , title_conta):
         self.nome = nome
         self.chavepix = chavepix
         self.valor = valor
@@ -70,7 +71,7 @@ class Payload():
 
     def gerarQrCode(self , payload):
         self.qrCode = qrcode.make(payload)
-        self.qrCode.save('pixQrCode.png')
+        self.qrCode.save(f"../media/pixQrCode/{self.title_conta}QrCode.png")
         print("--QR Code gerado com sucesso --")
 
 
@@ -82,6 +83,6 @@ class Payload():
 
 
 if __name__ == '__main__':
-    p = Payload('Pedro' , 'ed600435-a47e-4c6f-840b-916e9f2b3e40' , '1.00' , 'Brasila' , 'FamiliaVieira') 
+    p = Payload('PedroHenrique' , 'ed600435-a47e-4c6f-840b-916e9f2b3e40' , '1.0' , 'Brasila' , 'FamiliaVieira') 
 
     p.gerarPayload()
