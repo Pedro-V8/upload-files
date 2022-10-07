@@ -8,8 +8,27 @@ from django.views.generic.edit import DeleteView
 
 # Create your views here.
 
+def verifyEmptyFields(field):
+    if field is None or not field:
+        return False
+    else:
+        return True
+
 @login_required(login_url='/login')
 def index(request):
+    user = Profile.objects.get(email=request.user)
+    users = Profile.objects.all()
+    contas = Conta.objects.all()
+
+    return render(request , "index.html", context= {
+        "user": user,
+        "users": users,
+        "contas": contas,        
+    })
+
+
+@login_required(login_url='/login')
+def upload(request):
     if request.method == 'POST':
         users = []
         emails = request.POST.getlist('check')
@@ -18,9 +37,7 @@ def index(request):
             users.append(request.user)
         else:
             users = Profile.objects.filter(email__in=emails)
-
-        print(users)
-        return "OK"
+    
 
 
         conta = Conta(
@@ -45,19 +62,9 @@ def index(request):
 
         for user in users:
             responsaveis_conta.users.add(user)
-
-
-    
-    user = Profile.objects.get(email=request.user)
-    users = Profile.objects.all()
-    contas = Conta.objects.all()
-
-    return render(request , "index.html", context= {
-        "user": user,
-        "users": users,
-        "contas": contas,
+            
+        return index(request)
         
-    })
 
 @login_required(login_url='/login')
 def retrieve_file(request , pk):
