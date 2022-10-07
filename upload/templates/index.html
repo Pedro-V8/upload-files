@@ -22,7 +22,7 @@
         <a href="{%url 'cadastrar_pix'%}">Cadastrar Pix</a>
         <!--<p><a href="{% url 'logout' %}">Log Out</a></p>-->
 
-        <form action="{% url 'uploadFile' %}" method="POST" enctype="multipart/form-data">
+        <form action="{% url 'create_conta' %}" method="POST" enctype="multipart/form-data">
             <input type="text" name="title" placeholder="Enter a title">
 
             <input type="text" name="empresa" placeholder="Enter a Empresa">
