@@ -8,9 +8,14 @@ from django.views.generic.edit import DeleteView
 
 # Create your views here.
 
+def verifyEmptyFields(field):
+    if field is None or not field:
+        return False
+    else:
+        return True
+
 @login_required(login_url='/login')
 def index(request):
-
     user = Profile.objects.get(email=request.user)
     users = Profile.objects.all()
     contas = Conta.objects.all()
