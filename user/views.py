@@ -36,6 +36,7 @@ def login_request(request):
         '''print(user)
         return "OK"'''
         if user is not None:
+            
             auth.login(request , user)
             return redirect('uploadFile')
         else:
